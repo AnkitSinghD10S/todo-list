@@ -29,31 +29,32 @@ function TodoItem({ todo }) {
           />
           <input
               type="text"
-              className={`border outline-none w-full bg-transparent rounded-lg ${
-                  isTodoEditable ? "border-black/10 px-2" : "border-transparent"
+              className={`border w-full  rounded-4xl ${
+                  isTodoEditable ? "border-none border-black  px-2 bg-amber-50" : "border-transparent "
               } ${todo.completed ? "line-through" : ""}`}
               value={todoMsg}
               onChange={(e) => setTodoMsg(e.target.value)}
               readOnly={!isTodoEditable}
           />
           <button
-              className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0 disabled:opacity-50"
+              className=" w-8 h-8 rounded-lg border border-black bg-amber-50 hover:bg-green-400 disabled:opacity-1"
               onClick={() => {
                   if (todo.completed) return;
-
                   if (isTodoEditable) {
                       editTodo();
-                  } else setIsTodoEditable((prev) => !prev);
+                  } else setIsTodoEditable((isTodoEditable) => {
+                    return !isTodoEditable
+                  });
               }}
               disabled={todo.completed}
           >
               {isTodoEditable ? "📁" : "✏️"}
           </button>
           <button
-              className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0"
+              className="w-9 h-8 rounded-lg border border-black bg-amber-50 hover:bg-red-400"
               onClick={() => deleteTodo(todo.id)}
           >
-            ❌
+            🗑️
           </button>
       </div>
   );
